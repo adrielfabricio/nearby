@@ -1,9 +1,12 @@
 import { useRef } from "react";
 import { Text, useWindowDimensions } from "react-native";
+import { router } from "expo-router";
 import BottomSheet, { BottomSheetFlatList } from "@gorhom/bottom-sheet";
+
 import { IPlace } from "@/types/place";
-import { Props } from "./types";
+
 import Place from "../place";
+import { Props } from "./types";
 import { styles } from "./styles";
 
 export default function Places({ data }: Props) {
@@ -17,7 +20,12 @@ export default function Places({ data }: Props) {
 	}
 
 	function _renderItem({ item }: { item: IPlace }) {
-		return <Place data={item} />;
+		return (
+			<Place
+				data={item}
+				onPress={() => router.navigate(`/market/${item.id}`)}
+			/>
+		);
 	}
 
 	function _renderHeader() {

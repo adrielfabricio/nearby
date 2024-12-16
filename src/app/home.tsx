@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Alert, Text, View } from "react-native";
-import MapView, { Callout, Marker } from "react-native-maps";
+import { router } from "expo-router";
 import * as Location from "expo-location";
+import MapView, { Callout, Marker } from "react-native-maps";
 
 import { api } from "@/services/api";
 import { IPlace } from "@/types/place";
@@ -96,7 +97,7 @@ export default function Home() {
 						coordinate={{ latitude: m.latitude, longitude: m.longitude }}
 						image={require("@/assets/pin.png")}
 					>
-						<Callout>
+						<Callout onPress={() => router.navigate(`/market/${m.id}`)}>
 							<View>
 								<Text
 									style={{
